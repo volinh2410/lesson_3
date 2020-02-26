@@ -3,10 +3,24 @@ class UsersController < ApplicationController
 
   # GET /users
   # GET /users.json
-  def index
-    @users = User.all
-  end
+  # def index
+  #   @users = User.all
+  # end
 
+  def index
+    if params[:value]
+    @b = params[:value]
+    else @b = ''
+    end
+    @q = User.ransack(name_cont: @b, email_cont: @b, m: 'or')
+    @users = @q.result
+
+  end
+  
+  def search_params
+    return nil unless params[:user_list]
+    params.require(:user_list).permit :user_name_or_email
+  end
   # GET /users/1
   # GET /users/1.json
   def show
