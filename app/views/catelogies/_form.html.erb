@@ -1,0 +1,24 @@
+<%= form_with(model: catelogy, local: true) do |form| %>
+  <% if catelogy.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(catelogy.errors.count, "error") %> prohibited this catelogy from being saved:</h2>
+
+      <ul>
+        <% catelogy.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :catelogyName %>
+    <%= form.text_area :catelogyName %>
+  </div>
+
+ 
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -13,8 +13,7 @@ class UsersController < ApplicationController
     else @b = ''
     end
     @q = User.ransack(name_cont: @b, email_cont: @b, m: 'or')
-    @users = @q.result
-
+    @users = @q.result.order(:name).page params[:page]
   end
   
   def search_params
