@@ -1,3 +1,4 @@
+<div class="container">
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -7,12 +8,13 @@
 
 <p>
   <strong>User:</strong>
-  <%= @micropost.user_id %>
+  <%= @micropost.user.name%>
 </p>
 <p>
-  <strong>catelogy_id:</strong>
-  <%= @micropost.catelogy_id %>
+  <strong>catelogy_Name:</strong>
+  <%= @micropost.catelogy.catelogyName %>
 </p>
 
-<%= link_to 'Edit', edit_micropost_path(@micropost) %> |
-<%= link_to 'Back', microposts_path %>
+<%= link_to 'Edit', edit_micropost_path(@micropost), class: "btn btn-primary" %> |
+<%= link_to 'Back', microposts_path, class: "btn btn-secondary" %>
+</div>

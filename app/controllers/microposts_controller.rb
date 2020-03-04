@@ -10,8 +10,12 @@ class MicropostsController < ApplicationController
     @b = params[:value]
     else @b = ""
     end
-    # @micropostsAll = Micropost.joins(:user).joins(:catelogy)
-    @q = Micropost.includes(:user,:catelogy).joins(:user).joins(:catelogy).ransack(content_cont: @b, user_name_cont: @b, catelogy_catelogyName_cont: @b, m: 'or')
+    if params[:catelogyValue]
+      @pc = params[:catelogyValue]
+      else @pc= ""
+      end
+    @micropostsAll = Micropost.all
+    @q = Micropost.ransack(content_or_user_name_cont: @b, catelogy_id_in: @pc)
     @microposts = @q.result.order(:name).page params[:page]
   end
   

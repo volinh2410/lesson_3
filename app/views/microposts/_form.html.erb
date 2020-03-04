@@ -1,4 +1,6 @@
-<%= form_with(model: micropost, local: true) do |form| %>
+
+
+<%= bootstrap_form_with(model: micropost, local: true) do |form| %>
   <% if micropost.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(micropost.errors.count, "error") %> prohibited this micropost from being saved:</h2>
@@ -12,21 +14,20 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
+    <%= form.rich_text_area :content, label: "content" %>
   </div>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
+    <%= form.select :user_id, options_for_select(User.pluck(:name, :id)), class: "form-control mb-4", label: "User Name" %>
   </div>
 
    <div class="field">
-    <%= form.label :catelogy_id %>
-    <%= form.number_field :catelogy_id %>
+    <%= form.select :catelogy_id, options_for_select(Catelogy.pluck(:catelogyName, :id)), class: "form-control mb-4", label: "Catelogy Name" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>
+
+
