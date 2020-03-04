@@ -4,6 +4,12 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.5'
 gem 'webpacker', '~> 4.0'
 gem 'ransack'
+gem 'kaminari'
+gem 'bootstrap4-kaminari-views'
+gem 'byebug'
+gem 'image_processing', '~> 1.2'
+gem "bootstrap_form", "~> 4.0"
+gem 'bootstrap-sass'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
 # Use sqlite3 as the database for Active Record

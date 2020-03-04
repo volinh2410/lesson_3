@@ -13,8 +13,7 @@ class UsersController < ApplicationController
     else @b = ''
     end
     @q = User.ransack(name_cont: @b, email_cont: @b, m: 'or')
-    @users = @q.result
-
+    @users = @q.result.order(:name).page params[:page]
   end
   
   def search_params
@@ -39,7 +38,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
+    @user.avatar.attach(params[:user][:avatar])
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }

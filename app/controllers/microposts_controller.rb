@@ -3,8 +3,25 @@ class MicropostsController < ApplicationController
 
   # GET /microposts
   # GET /microposts.json
+ 
+
   def index
-    @microposts = Micropost.all
+    if params[:value]
+    @b = params[:value]
+    else @b = ""
+    end
+    if params[:catelogyValue]
+      @pc = params[:catelogyValue]
+      else @pc= ""
+      end
+    @micropostsAll = Micropost.all
+    @q = Micropost.ransack(content_or_user_name_cont: @b, catelogy_id_in: @pc)
+    @microposts = @q.result.order(:name).page params[:page]
+  end
+  
+  def search_params
+    return nil unless params[:micropost_list]
+    params.require(:micropost_list).permit :content_or_user_id_or_catelogy_id
   end
 
   # GET /microposts/1
@@ -69,6 +86,6 @@ class MicropostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def micropost_params
-      params.require(:micropost).permit(:content, :user_id)
+      params.require(:micropost).permit(:content, :user_id, :catelogy_id)
     end
 end

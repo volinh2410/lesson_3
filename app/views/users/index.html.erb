@@ -24,6 +24,7 @@
       <tr>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
+        <td><%= image_tag(user.avatar) if user.avatar.attached? %></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -31,6 +32,7 @@
     <% end %>
   </tbody>
 </table>
+<%= paginate @users, theme: "twitter-bootstrap-4", pagination_class: "pagination-sm pagination-centered",  nav_class: "d-inline-b"%>
 <br>
 </div>
 <%= link_to 'New User', new_user_path %>
