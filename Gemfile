@@ -7,7 +7,7 @@ gem 'ransack'
 gem 'kaminari'
 gem 'bootstrap4-kaminari-views'
 gem 'byebug'
-gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.12'
 gem "bootstrap_form", "~> 4.0"
 gem 'bootstrap-sass'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
